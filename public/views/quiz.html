@@ -1,0 +1,38 @@
+<div class="container">
+	<form name="surveyForm" ng-submit="save()">
+		<div class="control-group">
+			<label class="control-label" for="SurveyName">Survey Name
+			</label>
+			<div class="controls controls-row">
+				<table>
+					<tr>
+						<td><label>Question</label> </td>
+						<td>{{quiz.question}}</td>
+					</tr>
+					<tr>
+						<td><label>Answers</label> </td>
+					</tr>
+					<tr>
+						<td><label>1.</label></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td><label>2.</label></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td><label>3.</label></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td><label>4.</label></td>
+						<td></td>
+					</tr>
+				</table>
+			</div>
+		
+			<button class="btn">Cancel</button>
+			<input class="btn btn-primary" type="submit" value="Submit" />
+		</div>
+	</form>
+</div>

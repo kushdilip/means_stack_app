@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+  <head>
+  	
+  </head>
+  <body>
+  	<h1>Master Page</h1>
+	<h3 id="welcome"></h3>
+
+	<table>
+		<tr>
+			<td><label>Question</label> </td>
+			<td><input type="text" id="question" name="question" autofocus/>  </td>
+		</tr>
+		<tr>
+			<td><label>Answers</label> </td>
+		</tr>
+		<tr>
+			<td><label>1.</label></td>
+			<td><input type="text" id="opt1" name="opt1" autofocus/> </td>
+		</tr>
+		<tr>
+			<td><label>2.</label></td>
+			<td><input type="text" id="opt2" name="opt2" autofocus/></td>
+		</tr>
+		<tr>
+			<td><label>3.</label></td>
+			<td><input type="text" id="opt3" name="opt3" autofocus/> </td>
+		</tr>
+		<tr>
+			<td><label>4.</label></td>
+			<td><input type="text" id="opt4" name="opt4" autofocus/> </td>
+		</tr>
+	</table>
+	<button id="send">Send</button>
+	
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  	<script src="/socket.io/socket.io.js"></script>
+    <script>
+      var socket = io.connect();
+      
+      socket.on('welcome', function (data) {
+        $('#welcome').text(data.message);
+        console.log(data);
+        socket.emit('my other event', { my: 'data' });
+
+        $('#send').click(function(){
+        	question = $('#question').val();
+        	options = {'opt1': $('#opt1').val(), 
+        	'opt2': $('#opt2').val(), 
+        	'opt3': $('#opt3').val(), 
+        	'opt4': $('#opt4').val()
+        	 };
+
+        	var quiz = {'question': question, 'options': options};
+        	console.log(quiz);
+        	socket.emit('quiz', {data: quiz});
+        });
+
+      });
+
+    </script>
+  </body>
+ </html>
